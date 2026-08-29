@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Radar de Oportunidades — Imóveis Caixa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .upload{transition:.2s border-color,.2s background}.upload small{display:block;line-height:1.4}.upload-message{display:block;font-size:12px;color:#d8e8e3;margin:4px 0}.upload-progress{display:none;height:4px;background:#29463f;border-radius:99px;overflow:hidden;margin:3px 0 10px}.upload-progress i{display:block;width:38%;height:100%;background:#71d1b2;border-radius:99px;animation:uploading 1s ease-in-out infinite}.upload[data-state="loading"] .upload-progress{display:block}.upload[data-state="success"]{border-color:#32b78c;background:#173a31}.upload[data-state="success"] .upload-message{color:#79ddb9}.upload[data-state="error"]{border-color:#e57373;background:#3b2323}.upload[data-state="error"] .upload-message{color:#ffaaaa}@keyframes uploading{from{transform:translateX(-110%)}to{transform:translateX(290%)}}
+    .neighborhood-panel{min-width:0}.chart-empty{min-height:180px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:13px;background:#f8faf9;border:1px dashed var(--line);border-radius:10px}.chart-empty[hidden],.neighborhood-chart-wrap[hidden]{display:none!important}.neighborhood-chart-wrap{position:relative;height:390px}.neighborhood-chart-wrap canvas{max-height:none}
+    .sidebar .dataset{margin:0 0 24px;padding:16px 0;border-top:1px solid #29463f;border-bottom:1px solid #29463f}.sidebar select[multiple]{min-height:118px;padding:5px}.sidebar select[multiple] option{padding:6px;border-radius:4px}.sidebar select[multiple] option:checked{background:#32b78c;color:#10231e}.sidebar .field-hint{margin-top:5px;color:#91aaa3;font-size:10px}.caixa-link{display:inline-block;padding:6px 9px;border-radius:7px;background:var(--accent);color:#fff;text-decoration:none;font-size:10px;font-weight:700;white-space:nowrap}.caixa-link:hover{filter:brightness(1.08)}
+    .header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}.report-button{border:1px solid var(--accent);border-radius:9px;background:#fff;color:var(--accent);padding:8px 11px;font-size:11px;font-weight:700;cursor:pointer}.report-button:hover:not(:disabled){background:var(--accent2)}.report-button:disabled{opacity:.45;cursor:not-allowed}.print-header{display:none}
+    .timeline-head{align-items:flex-start}.timeline-controls{display:flex;gap:6px;align-items:center}.timeline-controls button,.timeline-controls select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 9px;color:var(--ink);font-size:11px;cursor:pointer}.timeline-controls #timelineToday{color:var(--accent);font-weight:700}.timeline-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}.timeline-kpis div{border:1px solid var(--line);border-radius:9px;padding:10px;background:#fafbfb}.timeline-kpis span{display:block;color:var(--muted);font-size:9px;line-height:1.3}.timeline-kpis strong{display:block;font-size:19px;margin-top:5px}.timeline-kpis .today-kpi{background:#fff8dd;border-color:#edcf65}.timeline-legend{display:flex;gap:15px;font-size:10px;color:var(--muted);margin:4px 0 8px}.timeline-legend span{display:flex;align-items:center;gap:5px}.timeline-legend i{width:10px;height:10px;border-radius:3px}.legend-first{background:#126e5a}.legend-second{background:#69b99f}.legend-today{background:#f2c94c}.timeline-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fbfcfc;padding:12px 8px 4px}.timeline-bars{height:205px;display:flex;align-items:flex-end;gap:3px;min-width:100%}.time-bucket{position:relative;flex:1;min-width:24px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;border-radius:6px 6px 0 0;cursor:pointer}.time-bucket:hover{background:#eef6f3}.time-bucket.today{background:#fff5c7;box-shadow:inset 0 0 0 1px #edcf65}.time-bucket.today:before{content:'HOJE';position:absolute;top:-9px;color:#8a6600;font-size:8px;font-weight:800}.time-volume{width:min(78%,22px);display:flex;flex-direction:column;justify-content:flex-end;min-height:2px;border-radius:4px 4px 0 0;overflow:hidden}.time-first{background:#126e5a}.time-second{background:#69b99f}.time-bucket.past .time-volume{filter:grayscale(.72);opacity:.65}.time-count{font-size:8px;font-weight:700;margin-bottom:3px;color:var(--ink)}.time-label{height:28px;font-size:8px;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);margin-top:4px}.time-bucket.selected{background:#dfeee9}.timeline-detail{margin-top:12px}.timeline-placeholder{padding:16px;text-align:center;color:var(--muted);font-size:11px;border:1px dashed var(--line);border-radius:9px}.timeline-detail-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.timeline-detail-head h3{font-size:13px;margin:0}.timeline-status{font-size:9px;font-weight:700;padding:5px 8px;border-radius:99px;background:var(--accent2);color:var(--accent)}.timeline-table .caixa-link{padding:5px 7px}@media(max-width:900px){.timeline-kpis{grid-template-columns:repeat(2,1fr)}.timeline-controls{flex-wrap:wrap}}
+    @media print{@page{size:A4 landscape;margin:10mm}*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{display:block;background:#fff;font-family:Inter,Arial,sans-serif}.sidebar,main>header,dialog,.pager,.search,.linkbtn,.timeline-controls{display:none!important}main{padding:0!important}.print-header{display:flex!important;position:fixed;z-index:999;top:0;left:0;right:0;height:18mm;padding:0 0 4mm;border-bottom:1px solid #ccd5d1;background:#fff;align-items:flex-start;justify-content:space-between;gap:15mm;color:#17202a}.print-header div{min-width:70mm}.print-header strong,.print-header span{display:block}.print-header strong{font-size:14px}.print-header span,.print-header p{font-size:9px;color:#56645f;margin:3px 0 0}.print-header p{max-width:175mm;text-align:right;line-height:1.35}.report-page{box-sizing:border-box;break-after:page;page-break-after:always;padding-top:23mm!important;margin:0!important;min-height:180mm;max-height:180mm;overflow:hidden}.report-page:last-of-type{break-after:auto;page-break-after:auto}.panel,.kpis article{box-shadow:none!important}.grid{gap:8px!important}.kpis{gap:8px!important}.neighborhood-chart-wrap{height:132mm!important}canvas{max-height:128mm!important}.table-wrap{overflow:visible!important}table{font-size:9px}th,td{padding:6px}.caixa-link{color:#126e5a!important;background:transparent!important;border:1px solid #126e5a}.chart-empty{min-height:80mm}.timeline-kpis{grid-template-columns:repeat(5,1fr)}.timeline-scroll{overflow:hidden}.timeline-bars{height:75mm}.timeline-detail{max-height:48mm;overflow:hidden}}
+    .time-bucket{border:0;padding:0;background:transparent;color:inherit;font:inherit}
+    .multi-dropdown{position:relative;margin-top:6px}.multi-dropdown>button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:10px;border:1px solid #355048;border-radius:8px;background:#18302a;color:#fff;text-align:left;cursor:pointer}.multi-dropdown-menu{position:absolute;z-index:100;top:calc(100% + 5px);left:0;right:0;max-height:240px;overflow:auto;padding:6px;background:#18302a;border:1px solid #45655c;border-radius:9px;box-shadow:0 12px 28px #0006}.multi-dropdown-menu[hidden]{display:none}.multi-option{display:flex!important;align-items:center;gap:8px;margin:0!important;padding:7px 6px!important;border-radius:5px;color:#d8e8e3!important;font-size:11px!important;cursor:pointer}.multi-option:hover{background:#23443b}.multi-option input{width:auto!important;margin:0!important;accent-color:#32b78c}.timeline-detail .pager{margin-top:10px}
+    .neighborhood-filter{margin:0 0 13px;color:#a8bbb5;font-size:12px}.filter-label{display:block}
+    .negative-percent{color:#c0392b!important;font-weight:700}
+    @media print{.report-exclude{display:none!important}.report-page.print-last{break-after:auto!important;page-break-after:auto!important}.grid.three.report-page{align-items:start}.grid.three.report-page .panel{height:122mm;overflow:hidden}.grid.three.report-page canvas{display:block!important;width:100%!important;height:94mm!important;max-height:94mm!important}}
+    .multi-filter{margin:0 0 13px;color:#a8bbb5;font-size:12px}.multi-actions{display:flex;gap:5px;padding:4px 4px 7px;border-bottom:1px solid #355048;margin-bottom:4px}.multi-actions button{flex:1;border:1px solid #45655c;border-radius:5px;background:#23443b;color:#bfe2d7;padding:6px;font-size:9px;font-weight:700;cursor:pointer}.multi-actions button:hover{background:#2b5549}
+    @media print{.grid.three.report-page{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:1fr!important;align-items:start!important}.grid.three.report-page .panel{height:125mm!important;max-height:125mm!important;overflow:hidden!important}.grid.three.report-page canvas{display:block!important;width:100%!important;height:92mm!important;max-height:92mm!important}}
+    .source-notice{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:14px;padding:15px 17px;border:1px solid #b9ddd1;border-radius:12px;background:#edf8f4;color:#174c3f}.source-notice strong{font-size:13px}.source-notice p{margin:3px 0 0;font-size:11px;color:#55736b}.source-notice a{flex:none;padding:8px 11px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-size:11px;font-weight:700}@media(max-width:600px){.source-notice{align-items:flex-start;flex-direction:column}}@media print{.source-notice{display:none!important}}
+    .source-notice[hidden]{display:none!important}
+    .global-loading{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;background:rgba(10,27,23,.68);backdrop-filter:blur(3px)}.global-loading[hidden]{display:none}.global-loading-card{width:min(360px,90vw);padding:28px 24px;border-radius:16px;background:#fff;box-shadow:0 24px 70px #0006;text-align:center}.global-loading-card strong,.global-loading-card small{display:block}.global-loading-card strong{margin-top:14px;font-size:16px}.global-loading-card small{margin-top:7px;color:var(--muted);line-height:1.45}.loading-spinner{display:inline-block;width:38px;height:38px;border:4px solid #d8ebe5;border-top-color:var(--accent);border-radius:50%;animation:loading-spin .75s linear infinite}@keyframes loading-spin{to{transform:rotate(360deg)}}body.is-processing{overflow:hidden}.saved-data-actions{display:flex;justify-content:flex-end;margin-top:8px}.saved-data-actions button{border:0;background:transparent;color:#71d1b2;padding:2px;font-size:10px;cursor:pointer}.saved-data-actions button:hover{text-decoration:underline}.saved-data-actions button[hidden]{display:none}.contact-block{margin-top:25px;padding-top:17px;border-top:1px solid #29463f}.contact-block>span{display:block;margin-bottom:10px;color:#91aaa3;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}.contact-links{display:flex;gap:9px}.contact-link{width:38px;height:38px;display:grid;place-items:center;border:1px solid #355048;border-radius:10px;background:#1b332d;color:#bfe2d7;text-decoration:none;transition:transform .18s,background .18s,border-color .18s,color .18s}.contact-link:hover,.contact-link:focus-visible{transform:translateY(-2px);border-color:#71d1b2;background:#23443b;color:#71d1b2;outline:none}.contact-link svg{width:18px;height:18px;fill:currentColor}.kpis{grid-template-columns:repeat(4,1fr)}@media(max-width:1200px){.kpis{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.kpis{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.kpis{grid-template-columns:1fr}}@media print{.contact-block{display:none!important}}
+  </style>
+</head>
+<body>
+  <div class="global-loading" id="globalLoading" hidden role="status" aria-live="polite" aria-busy="true">
+    <div class="global-loading-card"><span class="loading-spinner" aria-hidden="true"></span><strong id="globalLoadingTitle">Processando dados…</strong><small id="globalLoadingDetail">Isso pode levar alguns instantes.</small></div>
+  </div>
+  <aside class="sidebar">
+    <div class="brand"><div class="brandmark">R$</div><div><strong>Radar de Oportunidades</strong><span>Imóveis Caixa</span></div></div>
+    <div class="upload" id="uploadBox" data-state="idle">
+      <label for="fileInput">Carregar arquivo Excel</label>
+      <input id="fileInput" type="file" accept=".xlsx,.xls" />
+      <div class="upload-progress" id="uploadProgress" aria-hidden="true"><i></i></div>
+      <strong class="upload-message" id="uploadMessage" role="status" aria-live="polite">Nenhum arquivo selecionado</strong>
+      <small id="uploadDetails">Formatos aceitos: .xlsx e .xls. O arquivo é processado somente no navegador.</small>
+      <div class="saved-data-actions"><button type="button" id="removeSavedData" hidden>Remover base salva</button></div>
+    </div>
+    <div class="dataset"><span>Imóveis filtrados</span><strong id="filteredCount">—</strong><small id="totalCount">— na base</small></div>
+    <div class="filter-title"><span>Filtros</span><button id="clearFilters">Limpar</button></div>
+    <label>Estado<select id="fState"><option value="">Todos</option></select></label>
+    <label>Cidade<select id="fCity"><option value="">Todas</option></select></label>
+    <div class="neighborhood-filter"><span class="filter-label">Bairro</span><div class="multi-dropdown"><button type="button" id="fNeighborhoodToggle" aria-expanded="false">Todos os bairros <span>▾</span></button><div id="fNeighborhoodMenu" class="multi-dropdown-menu" hidden></div></div><select id="fNeighborhood" multiple hidden aria-label="Bairros selecionados"></select><small class="field-hint">É possível selecionar mais de um bairro.</small></div>
+    <div class="multi-filter"><span class="filter-label">Tipo</span><div class="multi-dropdown"><button type="button" id="fTypeToggle" aria-expanded="false">Todos os tipos <span>▾</span></button><div id="fTypeMenu" class="multi-dropdown-menu" hidden></div></div><select id="fType" multiple hidden aria-label="Tipos selecionados"></select><small class="field-hint">É possível selecionar mais de um tipo.</small></div>
+    <div class="multi-filter"><span class="filter-label">Modo de venda</span><div class="multi-dropdown"><button type="button" id="fModeToggle" aria-expanded="false">Todos os modos <span>▾</span></button><div id="fModeMenu" class="multi-dropdown-menu" hidden></div></div><select id="fMode" multiple hidden aria-label="Modos de venda selecionados"></select><small class="field-hint">É possível selecionar mais de um modo.</small></div>
+    <label>Financiamento<select id="fFinance"><option value="">Todos</option><option>Sim</option><option>Não</option></select></label>
+    <div class="range-grid"><label>Valor mínimo<input id="fMin" type="number" min="0" step="10000" placeholder="R$ 0" /></label><label>Valor máximo<input id="fMax" type="number" min="0" step="10000" placeholder="Sem limite" /></label></div>
+    <div class="range-grid"><label>Desconto mín. (%)<input id="fDiscount" type="number" min="-100" max="100" step="1" placeholder="Qualquer" /></label><label>Área mín. (m²)<input id="fArea" type="number" min="0" step="10" placeholder="Qualquer" /></label></div>
+    <div class="contact-block">
+      <span>Entre em contato</span>
+      <div class="contact-links">
+        <!-- Substitua os três links abaixo pelos seus dados. -->
+        <a class="contact-link" href="https://www.linkedin.com/in/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V8.98h3.42v1.57h.05c.47-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.37 4.27 5.46v6.29ZM5.32 7.41a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/></svg>
+        </a>
+        <a class="contact-link" href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.28-5.27-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.19-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.79 1.06.79 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+        </a>
+        <a class="contact-link" href="mailto:SEU_EMAIL@gmail.com" aria-label="E-mail" title="E-mail">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <header><div><h1>Visão estratégica de arrematações</h1><p>Preço, desconto, liquidez potencial e concentração geográfica em uma única visão.</p></div><div class="header-actions"><button id="printReport" class="report-button" disabled>Exportar relatório PDF</button><div class="status" id="dataStatus" role="status" aria-live="polite">Selecione um arquivo Excel</div></div></header>
+    <div class="source-notice" id="sourceNotice"><div><strong>Ainda não possui a planilha?</strong><p>Baixe a base de imóveis necessária para iniciar a análise.</p></div><a href="https://smartleiloescaixa.com.br/home" target="_blank" rel="noopener noreferrer">Baixar planilha ↗</a></div>
+    <div class="print-header" aria-hidden="true"><div><strong>Radar de Oportunidades — Imóveis Caixa</strong><span id="printDate"></span></div><p><b>Filtros:</b> <span id="printFilters">Todos os imóveis</span></p></div>
+
+    <section class="kpis">
+      <article><span>Mediana do valor</span><strong id="kMedianPrice">—</strong><small>Preço atual de venda</small></article>
+      <article><span>Mediana do desconto</span><strong id="kMedianDiscount">—</strong><small>vs. avaliação</small></article>
+      <article><span>Mediana R$/m²</span><strong id="kMedianSqm">—</strong><small>Área construída ou do terreno</small></article>
+      <article><span>Financiáveis</span><strong id="kFinance">—</strong><small>% da seleção</small></article>
+    </section>
+
+    <section class="panel timeline-panel">
+      <div class="panel-head timeline-head"><div><h2>Linha do tempo dos leilões</h2><p>Volume por data de encerramento. Clique em uma barra para visualizar os imóveis.</p></div><div class="timeline-controls"><button id="timelinePrev" title="Período anterior">←</button><select id="timelineRange" aria-label="Período da linha do tempo"><option value="30">30 dias</option><option value="90" selected>90 dias</option><option value="365">12 meses</option></select><button id="timelineToday">Voltar para hoje</button><button id="timelineNext" title="Próximo período">→</button></div></div>
+      <div class="timeline-kpis"><div><span>Encerrados nos últimos 30 dias</span><strong id="timePast30">—</strong></div><div class="today-kpi"><span>Encerram hoje</span><strong id="timeToday">—</strong></div><div><span>Próximos 7 dias</span><strong id="timeNext7">—</strong></div><div><span>Próximos 30 dias</span><strong id="timeNext30">—</strong></div><div><span>Imóveis sem data</span><strong id="timeNoDate">—</strong></div></div>
+      <div class="timeline-legend"><span><i class="legend-first"></i>1º leilão</span><span><i class="legend-second"></i>2º leilão</span><span><i class="legend-today"></i>HOJE</span></div>
+      <div class="timeline-scroll" id="timelineScroll"><div class="timeline-bars" id="timelineBars"></div></div>
+      <div class="timeline-detail" id="timelineDetail"><div class="timeline-placeholder">Clique em uma barra para ver os leilões daquela data.</div></div>
+    </section>
+
+    <section class="grid">
+      <article class="panel"><div class="panel-head"><div><h2>Distribuição por valor</h2><p>Histograma real dos preços de venda</p></div></div><canvas id="priceChart"></canvas></article>
+    </section>
+
+    <section class="grid two neighborhood-grid">
+      <article class="panel neighborhood-panel">
+        <div class="panel-head"><div><h2>Oportunidades por bairro</h2><p>Maiores ofertas, segmentadas por financiamento</p></div><span class="badge neighborhood-state-badge">Selecione um estado</span></div>
+        <div class="neighborhood-empty chart-empty">Selecione um estado no filtro lateral para visualizar a distribuição por bairro.</div>
+        <div class="neighborhood-chart-wrap" hidden><canvas id="neighborhoodChart"></canvas></div>
+      </article>
+      <article class="panel neighborhood-panel">
+        <div class="panel-head"><div><h2>Bairros com mais financiáveis</h2><p>Ranking pela quantidade de imóveis que aceitam financiamento</p></div><span class="badge neighborhood-state-badge">Selecione um estado</span></div>
+        <div class="neighborhood-empty chart-empty">Selecione um estado no filtro lateral para visualizar o ranking.</div>
+        <div class="neighborhood-chart-wrap" hidden><canvas id="financeNeighborhoodChart"></canvas></div>
+      </article>
+    </section>
+
+    <section class="grid three">
+      <article class="panel"><div class="panel-head"><div><h2>Ruas com maior oferta</h2><p>Extraídas automaticamente do endereço</p></div></div><div id="streetRanking" class="ranking"></div></article>
+      <article class="panel"><div class="panel-head"><div><h2>Onde estão os descontos</h2><p>Mediana por tipo de imóvel</p></div></div><canvas id="discountChart"></canvas></article>
+      <article class="panel"><div class="panel-head"><div><h2>Modalidade de venda</h2><p>Participação na seleção</p></div></div><canvas id="modeChart"></canvas></article>
+    </section>
+
+    <section class="grid two">
+      <article class="panel"><div class="panel-head"><div><h2>Ranking de oportunidades</h2><p>Score relativo: desconto + R$/m² + financiamento + economia</p></div><span class="badge">Top 12</span></div><div class="table-wrap"><table><thead><tr><th>Score</th><th>Imóvel</th><th>Local</th><th>Venda</th><th>Desc.</th><th>R$/m²</th><th>Caixa</th></tr></thead><tbody id="opportunityTable"></tbody></table></div></article>
+      <article class="panel insights"><div class="panel-head"><div><h2>Leituras estratégicas</h2><p>Indicadores adicionais encontrados na base</p></div></div><div id="insights"></div></article>
+    </section>
+
+    <section class="panel report-exclude"><div class="panel-head"><div><h2>Explorador de imóveis</h2><p>Ordenado pelo score estratégico</p></div><input id="search" class="search" placeholder="Buscar endereço, bairro, cidade ou ID…" /></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Tipo</th><th>Endereço</th><th>Venda</th><th>Avaliação</th><th>Desconto</th><th>Área</th><th>R$/m²</th><th>Financ.</th><th></th></tr></thead><tbody id="propertyTable"></tbody></table></div><div class="pager"><button id="prevPage">←</button><span id="pageInfo"></span><button id="nextPage">→</button></div></section>
+  </main>
+
+  <dialog id="propertyModal"><button class="close" onclick="propertyModal.close()">×</button><div id="modalContent"></div></dialog>
+
+  <script>
+    // Feedback imediato e independente das bibliotecas externas.
+    document.getElementById('fileInput').addEventListener('change', function () {
+      var file = this.files && this.files[0];
+      if (!file) return;
+      document.getElementById('dataStatus').textContent = 'Carregando ' + file.name + '…';
+      document.getElementById('uploadBox').dataset.state = 'loading';
+      document.getElementById('uploadMessage').textContent = 'Carregando ' + file.name + '…';
+      document.getElementById('uploadDetails').textContent = 'Aguarde enquanto o arquivo é lido e processado.';
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="app.js?v=23"></script>
+</body>
+</html>
