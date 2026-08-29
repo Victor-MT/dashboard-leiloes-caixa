@@ -1,10 +1,10 @@
 # Radar de Oportunidades — Imóveis Caixa
 
-Dashboard web para explorar e comparar oportunidades de imóveis da Caixa a partir de uma planilha Excel. Todo o processamento é realizado localmente no navegador: a planilha não é enviada para um servidor.
+Dashboard web para explorar e comparar oportunidades de imóveis da Caixa a partir de uma planilha Excel ou CSV. Todo o processamento é realizado localmente no navegador: o arquivo não é enviado para um servidor.
 
 ## Funcionalidades
 
-- Upload de arquivos `.xlsx` e `.xls`.
+- Upload de arquivos `.xlsx`, `.xls` e `.csv`.
 - Detecção automática da aba e da linha de cabeçalho.
 - Indicadores de preço, desconto, R$/m², economia potencial e financiamento.
 - Filtros por estado, cidade, múltiplos bairros, tipos de imóvel e modos de venda.
@@ -45,8 +45,8 @@ http://localhost:8000
 ## Como utilizar
 
 1. Abra o dashboard no navegador.
-2. Clique em **Carregar arquivo Excel**.
-3. Selecione a planilha de imóveis.
+2. Clique em **Carregar arquivo Excel ou CSV**.
+3. Selecione o arquivo de imóveis.
 4. Aguarde a confirmação do processamento.
 5. Utilize os filtros laterais para atualizar indicadores, gráficos e rankings.
 
@@ -190,4 +190,3 @@ dashboard-leiloes/
 ## Tecnologias
 
 O projeto utiliza HTML, CSS e JavaScript puro, sem framework e sem processo de build.
-

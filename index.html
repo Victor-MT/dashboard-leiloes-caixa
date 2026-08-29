@@ -34,11 +34,11 @@
   <aside class="sidebar">
     <div class="brand"><div class="brandmark">R$</div><div><strong>Radar de Oportunidades</strong><span>Imóveis Caixa</span></div></div>
     <div class="upload" id="uploadBox" data-state="idle">
-      <label for="fileInput">Carregar arquivo Excel</label>
-      <input id="fileInput" type="file" accept=".xlsx,.xls" />
+      <label for="fileInput">Carregar arquivo Excel ou CSV</label>
+      <input id="fileInput" type="file" accept=".xlsx,.xls,.csv,text/csv" />
       <div class="upload-progress" id="uploadProgress" aria-hidden="true"><i></i></div>
       <strong class="upload-message" id="uploadMessage" role="status" aria-live="polite">Nenhum arquivo selecionado</strong>
-      <small id="uploadDetails">Formatos aceitos: .xlsx e .xls. O arquivo é processado somente no navegador.</small>
+      <small id="uploadDetails">Formatos aceitos: .xlsx, .xls e .csv. O arquivo é processado somente no navegador.</small>
       <div class="saved-data-actions"><button type="button" id="removeSavedData" hidden>Remover base salva</button></div>
     </div>
     <div class="dataset"><span>Imóveis filtrados</span><strong id="filteredCount">—</strong><small id="totalCount">— na base</small></div>
@@ -69,7 +69,7 @@
   </aside>
 
   <main>
-    <header><div><h1>Visão estratégica de arrematações</h1><p>Preço, desconto, liquidez potencial e concentração geográfica em uma única visão.</p></div><div class="header-actions"><button id="printReport" class="report-button" disabled>Exportar relatório PDF</button><div class="status" id="dataStatus" role="status" aria-live="polite">Selecione um arquivo Excel</div></div></header>
+    <header><div><h1>Visão estratégica de arrematações</h1><p>Preço, desconto, liquidez potencial e concentração geográfica em uma única visão.</p></div><div class="header-actions"><button id="printReport" class="report-button" disabled>Exportar relatório PDF</button><div class="status" id="dataStatus" role="status" aria-live="polite">Selecione um arquivo Excel ou CSV</div></div></header>
     <div class="source-notice" id="sourceNotice"><div><strong>Ainda não possui a planilha?</strong><p>Baixe a base de imóveis necessária para iniciar a análise.</p></div><a href="https://smartleiloescaixa.com.br/home" target="_blank" rel="noopener noreferrer">Baixar planilha ↗</a></div>
     <div class="print-header" aria-hidden="true"><div><strong>Radar de Oportunidades — Imóveis Caixa</strong><span id="printDate"></span></div><p><b>Filtros:</b> <span id="printFilters">Todos os imóveis</span></p></div>
 
@@ -134,6 +134,6 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <script src="app.js?v=23"></script>
+  <script src="app.js?v=24"></script>
 </body>
 </html>

@@ -201,7 +201,8 @@ $('fileInput').onchange=e=>{
   if(!f)return;
   fileImportStarted=true;
   if(!locationFiltersTouched)locationDefaultsApplied=false;
-  if(!/\.xlsx?$/i.test(f.name)){setUploadState('error','Formato não suportado','Selecione um arquivo .xlsx ou .xls.');$('dataStatus').textContent='Arquivo inválido';e.target.value='';return}
+  if(!/\.(xlsx?|csv)$/i.test(f.name)){setUploadState('error','Formato não suportado','Selecione um arquivo .xlsx, .xls ou .csv.');$('dataStatus').textContent='Arquivo inválido';e.target.value='';return}
+  const isCsv=/\.csv$/i.test(f.name);
   const size=f.size<1048576?`${(f.size/1024).toFixed(0)} KB`:`${(f.size/1048576).toFixed(1)} MB`;
   setGlobalLoading(true,'Carregando arquivo…',`${f.name} · ${size}`);
   setUploadState('loading',`Lendo ${f.name}…`,`${size} · aguarde enquanto a planilha é processada.`);
@@ -225,12 +226,12 @@ $('fileInput').onchange=e=>{
       $('globalLoadingDetail').textContent='Salvando a base neste navegador…';
       try{await saveDataset(parsed.rows,metadata);$('removeSavedData').hidden=false}catch(storageError){persisted=false;console.warn('Não foi possível salvar a base no navegador:',storageError);$('removeSavedData').hidden=true}
       $('dataStatus').textContent=`Base carregada · ${data.length.toLocaleString('pt-BR')} imóveis`;
-      setUploadState('success',`${f.name} carregado com sucesso`,`${summary} · aba “${sheetName}”${persisted?' · salva neste navegador':' · armazenamento local indisponível'}`);
+      setUploadState('success',`${f.name} carregado com sucesso`,`${summary}${isCsv?'':` · aba “${sheetName}”`}${persisted?' · salva neste navegador':' · armazenamento local indisponível'}`);
       endProcessing();
     }catch(err){
       console.error(err);
-      let detail=err.message==='XLSX_UNAVAILABLE'?'A biblioteca de leitura do Excel não carregou. Verifique a internet e recarregue a página.':err.message==='HEADER_NOT_FOUND'?'Não foi possível localizar um cabeçalho compatível nas primeiras 15 linhas de nenhuma aba. O cabeçalho pode estar na linha 2 normalmente.':err.message==='NO_VALID_ROWS'?'O cabeçalho foi reconhecido, mas nenhuma linha possui um ID de imóvel válido.':err.message.startsWith('MISSING_COLUMNS:')?`O cabeçalho foi encontrado, mas estas colunas não foram reconhecidas: ${err.message.slice('MISSING_COLUMNS:'.length)}.`:err.message.startsWith('WORKER_UNAVAILABLE:')?'O processamento em segundo plano não pôde ser iniciado. Recarregue a página e confirme que a biblioteca do Excel foi carregada.':`Erro técnico: ${err.message||'não identificado'}.`;
-      $('dataStatus').textContent='Não foi possível ler o Excel';
+      let detail=err.message==='XLSX_UNAVAILABLE'?'A biblioteca de leitura de planilhas não carregou. Verifique a internet e recarregue a página.':err.message==='HEADER_NOT_FOUND'?'Não foi possível localizar um cabeçalho compatível nas primeiras 15 linhas do arquivo. O cabeçalho pode estar na linha 2 normalmente.':err.message==='NO_VALID_ROWS'?'O cabeçalho foi reconhecido, mas nenhuma linha possui um ID de imóvel válido.':err.message.startsWith('MISSING_COLUMNS:')?`O cabeçalho foi encontrado, mas estas colunas não foram reconhecidas: ${err.message.slice('MISSING_COLUMNS:'.length)}.`:err.message.startsWith('WORKER_UNAVAILABLE:')?'O processamento em segundo plano não pôde ser iniciado. Recarregue a página e confirme que a biblioteca de planilhas foi carregada.':`Erro técnico: ${err.message||'não identificado'}.`;
+      $('dataStatus').textContent='Não foi possível ler o arquivo';
       setUploadState('error','Não foi possível processar o arquivo',detail);
       endProcessing();
     }
