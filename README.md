@@ -2,6 +2,8 @@
 
 Dashboard web para explorar e comparar oportunidades de imóveis da Caixa a partir de uma planilha Excel ou CSV. Todo o processamento é realizado localmente no navegador: o arquivo não é enviado para um servidor.
 
+![Dashboard Radar de Oportunidades](assets/portfolio-cover.webp)
+
 ## Funcionalidades
 
 - Upload de arquivos `.xlsx`, `.xls` e `.csv`.
