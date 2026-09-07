@@ -30,20 +30,6 @@ O projeto não exige instalação ou etapa de compilação. Entretanto, é recom
 3. Clique com o botão direito em `index.html`.
 4. Escolha **Open with Live Server**.
 
-### Com Python
-
-Na pasta do projeto, execute:
-
-```bash
-python -m http.server 8000
-```
-
-Depois acesse:
-
-```text
-http://localhost:8000
-```
-
 ## Como utilizar
 
 1. Abra o dashboard no navegador.
